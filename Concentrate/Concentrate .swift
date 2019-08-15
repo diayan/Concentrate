@@ -14,7 +14,21 @@ class Concentrate
     var cards =  [Card]()
     
     //choose card by index of the array
-    func chooseCard( index: Int){
+    func chooseCard( at index: Int){
         
+        if cards[index].isFaceUp{
+            cards[index].isFaceUp = true
+        }else{
+            cards[index].isFaceUp = false
+        }
+    }
+    
+    init(numberOfPairsOfCards: Int) {
+        for _ in 1...numberOfPairsOfCards{
+           
+            let card = Card()
+            //structs get copied when they are assigned so
+            cards = [card, card]
+        }
     }
 }
