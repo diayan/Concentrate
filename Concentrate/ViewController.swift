@@ -48,12 +48,22 @@ class ViewController: UIViewController {
         }
     }
     
-    var emojiChoices = ["🎃", "👻", "🎃", "👻"]
+    var emojiChoices = ["🎃","🙀","👻","👿","🎃","👻","🙀","🥶","👿","🥶"]
     
-    var emoji = Dictionary<Int, String>()
+    //var emoji = Dictionary<Int, String>() fancy way of creating a dictionary
+    var emoji = [Int : String]()
      
     func emoji(for card: Card) -> String{
-        return "?"
+        
+        //used the to indicate another if statement that would have been nested
+        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
+            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+            //remove at lets you remove card after picking so that you don't have an identifier repeating it's self
+            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+        }
+        
+        //return an emoji with the identifier specified else return a question mark
+         return  emoji[card.identifier] ?? "?"
     }
 }
 
